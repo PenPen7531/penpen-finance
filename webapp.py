@@ -6,9 +6,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    data=show_data()
+    data, total, saved, spent = show_data()
 
-    return render_template('index.html', data=data)
+    return render_template('index.html', data=data, total=total, saved=saved, spent=spent)
 
 @app.route('/post', methods=["GET", "POST"])
 def add_cost():
@@ -17,7 +17,8 @@ def add_cost():
     if request.method=="POST":
         type=request.form.get("type")
         cost=request.form.get('cost')
-        append_data(type, cost)
+        description = request.form.get('desc')
+        append_data(type, cost, description)
         return redirect('/')
 
 if __name__ == '__main__':

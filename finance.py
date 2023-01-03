@@ -11,11 +11,14 @@ wb = load_workbook('finances.xlsx')
 ws = wb.active
 
 
-def append_data(type, cost):
+def append_data(type, cost, description):
     date=datetime.datetime.now()
     
-    ws.append([str(type), str(cost), date.strftime("%B %d, %Y")])
+    ws.append([str(type), str(cost), description, date.strftime("%B %d, %Y")])
     wb.save('finances.xlsx')
+    
+
+
 
 def show_data():
     wb = load_workbook('finances.xlsx')
@@ -34,6 +37,7 @@ def show_data():
         row_data["type"] = row[0]
         row_data["cost"] = row[1]
         row_data["date"] = row[2]
+        row_data['description'] = row[3]
         if row[0] == 'Food':
             food += int(row[1])
         if row[0] == 'Videogames':
@@ -47,33 +51,48 @@ def show_data():
         
 
         data.append(row_data)
+
+    
+    saved = savings
+    spent = food + videogames + computer + other
+    total = spent + savings
     costs=[]
     mylabels=[]
-    
+    colours=[]
     if food > 0:
         costs.append(food)
         mylabels.append("Food")
+        colours.append('orchid')
     
     if videogames > 0:
         costs.append(videogames)
         mylabels.append("Videogames")
+        colours.append("coral")
     
     if computer > 0:
         costs.append(computer)
         mylabels.append("Computer")
+        colours.append("gold")
 
     if other > 0:
         costs.append(other)
         mylabels.append("Other")
+        colours.append('limegreen')
 
     if savings > 0:
         costs.append(savings)
         mylabels.append("Savings")
+        colours.append('deepskyblue')
 
     plt.switch_backend('agg')
-    plt.pie(costs, labels=mylabels, autopct=lambda p: '${:.2f}'.format(p * sum(costs) / 100))
+    plt.pie(costs, labels=mylabels, autopct=lambda p: '${:.2f}'.format(p * sum(costs) / 100), colors=colours)
     plt.legend(title = 'Costs')
     plt.savefig('static/img/piechart.png')
-    return data
 
-show_data()
+    fig, ax = plt.subplots()
+    ax.bar(mylabels, costs, color=colours)
+    ax.set_ylabel("Total Cost ($)")
+    ax.set_title("Finance Bar Graph")
+ 
+    plt.savefig('static/img/barchart.png')
+    return data, total, saved, spent

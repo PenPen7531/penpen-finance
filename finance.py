@@ -39,15 +39,15 @@ def show_data():
         row_data["date"] = row[2]
         row_data['description'] = row[3]
         if row[0] == 'Food':
-            food += int(row[1])
+            food += float(row[1])
         if row[0] == 'Videogames':
-            videogames += int(row[1])
+            videogames += float(row[1])
         if row[0] == 'Computer':
-            computer += int(row[1])
+            computer += float(row[1])
         if row[0] == 'Other':
-            other += int(row[1])
+            other += float(row[1])
         if row[0] == 'Saving':
-            savings += int(row[1])
+            savings += float(row[1])
         
 
         data.append(row_data)

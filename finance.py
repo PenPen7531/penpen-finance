@@ -35,7 +35,7 @@ def show_data():
 
         row_data={}
         row_data["type"] = row[0]
-        row_data["cost"] = '{0:.2f}'.format(float(row[1]))
+        row_data["cost"] = "{0:.2f}".format(row[1])
         row_data["date"] = row[2]
         row_data['description'] = row[3]
         if row[0] == 'Food':
@@ -53,11 +53,9 @@ def show_data():
         data.append(row_data)
 
     
-    saved = '0:.2f'.format(savings)
+    saved = savings
     spent = food + videogames + computer + other
-    spent = '0:.2f'.format(spent)
     total = spent + savings
-    total = '0:.2f'.format(total)
     costs=[]
     mylabels=[]
     colours=[]
@@ -97,4 +95,9 @@ def show_data():
     ax.set_title("Finance Bar Graph")
  
     plt.savefig('static/img/barchart.png')
+  
+    total = '{0:.2f}'.format(total)
+    saved = '{0:.2f}'.format(saved)
+    spent = '{0:.2f}'.format(spent)
+  
     return data, total, saved, spent

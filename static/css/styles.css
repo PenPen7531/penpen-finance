@@ -7,9 +7,7 @@
 	margin: 0;
 }
 
-html{
-	padding: 5px;
-}
+
 
 #table{
 	padding: 0;
@@ -18,7 +16,8 @@ html{
 }
 
 #fluid{
-	padding: auto;
+    margin: 0;
+    padding: 0;
 }
 
 

@@ -21,5 +21,10 @@ def add_cost():
         append_data(type, cost, description)
         return redirect('/')
 
+@app.route('/view')
+def viewall():
+    data, total, saved, spent = show_data()
+    return render_template('view.html', data=data, total=total, saved=saved, spent=spent)
+
 if __name__ == '__main__':
     app.run(debug=True)

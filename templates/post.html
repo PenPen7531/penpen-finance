@@ -26,15 +26,26 @@
                   <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="#">Add Exchange</a>
+                  <a class="nav-link text-white" href="#">Add Data</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/view">View Details</a>
+                  </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      View Charts
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/static/img/barchart.png">Bar Graph</a>
+                      <a class="dropdown-item" href="/static/img/piechart.png">Pie Graph</a>
+                    </div>
+                  </li>
               </ul>
-            </div>  
-        </nav>
-
+            </div>
+          </nav>
+          
         <form method="POST" id="form">
-
+            <h1 class="text-white">Add Transaction</h1>
             <div class="form-group">
                 <label for="type" class="text-white">Type</label>
     

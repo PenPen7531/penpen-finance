@@ -91,6 +91,7 @@ def show_data():
     plt.switch_backend('agg')
     plt.pie(costs, labels=mylabels, autopct=lambda p: '${:.2f}'.format(p * sum(costs) / 100), colors=colours)
     plt.legend(title = 'Costs')
+    plt.title("Finance Pie Graph")
     plt.savefig('static/img/piechart.png')
 
     fig, ax = plt.subplots()

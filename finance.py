@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pytz import timezone
 
-wb = load_workbook('finances.xlsx')
-
-ws = wb.active
 
 
 def append_data(type, cost, description):
+    wb = load_workbook('finances.xlsx')
+
+    ws = wb.active
     date=datetime.datetime.now()
     
     my_timezone=timezone('US/Pacific')

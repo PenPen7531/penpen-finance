@@ -35,7 +35,7 @@ def show_data():
 
         row_data={}
         row_data["type"] = row[0]
-        row_data["cost"] = "{0:.2f}".format(row[1])
+        row_data["cost"] = "{0:.2f}".format(float(row[1]))
         row_data["date"] = row[2]
         row_data['description'] = row[3]
         if row[0] == 'Food':

@@ -4,7 +4,7 @@ from flask import request, render_template, redirect, session, Flask
 import datetime
 import matplotlib.pyplot as plt
 import numpy as np
-
+from pytz import timezone
 
 wb = load_workbook('finances.xlsx')
 
@@ -14,6 +14,10 @@ ws = wb.active
 def append_data(type, cost, description):
     date=datetime.datetime.now()
     
+    my_timezone=timezone('US/Pacific')
+
+    date = my_timezone.localize(date)
+    date = date.astimezone(my_timezone)
     ws.append([str(type), str(cost), description, date.strftime("%B %d, %Y")])
     wb.save('finances.xlsx')
     
@@ -36,8 +40,8 @@ def show_data():
         row_data={}
         row_data["type"] = row[0]
         row_data["cost"] = "{0:.2f}".format(float(row[1]))
-        row_data["date"] = row[2]
-        row_data['description'] = row[3]
+        row_data['description'] = row[2]
+        row_data["date"] = row[3]
         if row[0] == 'Food':
             food += float(row[1])
         if row[0] == 'Videogames':

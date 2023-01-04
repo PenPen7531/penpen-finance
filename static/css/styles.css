@@ -22,7 +22,12 @@ html{
 }
 
 
-@media only screen and (max-width: 1000px){
+@media screen and (max-width: 1000px){
 	.mar-25{
 		margin: 10px auto;
 	}
+
+    td, th{
+        padding: 2.5px;
+    }
+}

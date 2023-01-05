@@ -34,6 +34,7 @@ def show_data():
     other = 0
     savings = 0
     data=[]
+    count=1
     for row in ws.values:
 
 
@@ -42,6 +43,7 @@ def show_data():
         row_data["cost"] = "{0:.2f}".format(float(row[1]))
         row_data['description'] = row[2]
         row_data["date"] = row[3]
+        row_data["row"] = count
         if row[0] == 'Food':
             food += float(row[1])
         if row[0] == 'Videogames':
@@ -55,6 +57,7 @@ def show_data():
         
 
         data.append(row_data)
+        count+=1
 
     
     saved = savings
@@ -106,3 +109,16 @@ def show_data():
     spent = '{0:.2f}'.format(spent)
   
     return data, total, saved, spent
+
+def delete_row(row):
+    wb = load_workbook('finances.xlsx')
+    ws = wb.active
+    ws.delete_rows(int(row))
+    wb.save('finances.xlsx')
+
+
+def reset():
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Finances"
+    wb.save('finances.xlsx')

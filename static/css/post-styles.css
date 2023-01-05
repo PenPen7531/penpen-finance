@@ -2,9 +2,12 @@
 
     margin: 100px;
 }
-
+#fluid{
+    margin: 0;
+    padding: 0;
+}
 @media only screen and (max-width: 1000px){
     #form{
-        margin: 100px 5px;
+        margin: 100px 10px;
     }
 }

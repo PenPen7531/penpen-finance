@@ -1,6 +1,6 @@
 from flask import request, render_template, redirect, session, Flask
 import datetime
-from finance import append_data, show_data
+from finance import append_data, show_data, delete_row, reset
 
 app = Flask(__name__)
 
@@ -25,6 +25,16 @@ def add_cost():
 def viewall():
     data, total, saved, spent = show_data()
     return render_template('view.html', data=data, total=total, saved=saved, spent=spent)
+
+@app.route("/delete/<row>")
+def delete(row):
+    delete_row(row)
+    return redirect("/view")
+
+@app.route('/reset')
+def reset_book():
+    reset()
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
